@@ -36,21 +36,25 @@ debconf-set-selections <<< "mysql-server-5.6 mysql-server/root_password password
 debconf-set-selections <<< "mysql-server-5.6 mysql-server/root_password_again password \"''\""
 echo "Done!"
 
+
+info "Add PHP 7.1 repository"
+add-apt-repository -y ppa:ondrej/php
+
 info "Update OS software"
 apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y git php5-curl php5-cli php5-intl php5-mysqlnd php5-gd php5-fpm nginx mysql-server-5.6
+apt-get install -y git php7.1-curl php7.1-cli php7.1-intl php7.1-mysqlnd php7.1-gd php7.1-fpm nginx mysql-server-5.6
 
 info "Configure MySQL"
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 echo "Done!"
 
 info "Configure PHP-FPM"
-sed -i 's/user = www-data/user = vagrant/g' /etc/php5/fpm/pool.d/www.conf
-sed -i 's/group = www-data/group = vagrant/g' /etc/php5/fpm/pool.d/www.conf
-sed -i 's/owner = www-data/owner = vagrant/g' /etc/php5/fpm/pool.d/www.conf
+sed -i 's/user = www-data/user = vagrant/g' /etc/php/7.1/fpm/pool.d/www.conf
+sed -i 's/group = www-data/group = vagrant/g' /etc/php/7.1/fpm/pool.d/www.conf
+sed -i 's/owner = www-data/owner = vagrant/g' /etc/php/7.1/fpm/pool.d/www.conf
 echo "Done!"
 
 info "Configure NGINX"
@@ -62,8 +66,8 @@ ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
 echo "Done!"
 
 info "Initailize databases for MySQL"
-mysql -uroot <<< "CREATE DATABASE yii2advanced"
-mysql -uroot <<< "CREATE DATABASE yii2advanced_test"
+mysql -uroot <<< "CREATE DATABASE yii_shop"
+mysql -uroot <<< "CREATE DATABASE yii_shop_test"
 echo "Done!"
 
 info "Install composer"

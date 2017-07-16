@@ -2,8 +2,8 @@ require 'yaml'
 require 'fileutils'
 
 domains = {
-  frontend: 'y2aa-frontend.dev',
-  backend:  'y2aa-backend.dev'
+  frontend: 'frontend.yii-shop.dev',
+  backend:  'backend.yii-shop.dev'
 }
 
 config = {
