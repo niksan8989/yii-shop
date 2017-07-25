@@ -7,8 +7,8 @@ return [
     ],
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
-            'path' => '@common/runtime/cache',
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true
         ],
     ],
 ];
