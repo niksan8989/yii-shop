@@ -45,7 +45,7 @@ apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y git php7.1-curl php7.1-cli php7.1-intl php7.1-mysqlnd php7.1-gd php7.1-fpm nginx mysql-server-5.6 memcached php7.1-memcached
+apt-get install -y git php7.1-curl php7.1-cli php7.1-intl php7.1-mysqlnd php7.1-gd php7.1-fpm nginx mysql-server-5.6 memcached php7.1-memcached php7.1-xml php7.1-mbstring
 
 info "Configure MySQL"
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
