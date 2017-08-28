@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\tests\unit\models;
+namespace frontend\tests\unit\forms;
 
 use Yii;
 use frontend\forms\PasswordResetRequestForm;

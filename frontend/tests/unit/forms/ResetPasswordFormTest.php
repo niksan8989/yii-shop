@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\tests\unit\models;
+namespace frontend\tests\unit\forms;
 
 use common\fixtures\User as UserFixture;
 use frontend\forms\ResetPasswordForm;
