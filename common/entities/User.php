@@ -26,6 +26,44 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    /*
+     * Signs user up
+     * return User|null
+     */
+    public static function signup(string $username, string $email, string $password): self
+    {
+        $user = new static();
+        $user->username = $username;
+        $user->email = $email;
+        $user->setPassword($password);
+        $user->created_at = time();
+        $user->status = self::STATUS_ACTIVE;
+        $user->generateAuthKey();
+        return $user;
+    }
+
+    public function requestPasswordReset(): void
+    {
+        if (!empty($this->password_reset_token) && self::isPasswordResetTokenValid($this->password_reset_token)) {
+            throw new \DomainException('Password resetting is already requested.');
+        }
+        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Resets password.
+     * @param string $password
+     * @return bool if password was reset.
+     */
+    public function resetPassword($password)
+    {
+        $this->setPassword($password);
+        $this->removePasswordResetToken();
+
+        return $this->save(false);
+    }
+
+
 
     /**
      * @inheritdoc
@@ -54,6 +92,11 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::STATUS_ACTIVE;
     }
 
     /**
@@ -171,18 +214,11 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
-    /**
-     * Generates new password reset token
-     */
-    public function generatePasswordResetToken()
-    {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
 
     /**
      * Removes password reset token
      */
-    public function removePasswordResetToken()
+    private function removePasswordResetToken()
     {
         $this->password_reset_token = null;
     }

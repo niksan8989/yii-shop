@@ -35,24 +35,4 @@ class SignupForm extends Model
             ['password', 'string', 'min' => 6],
         ];
     }
-
-    /**
-     * Signs user up.
-     *
-     * @return \common\entities\User|null the saved model or null if saving fails
-     */
-    public function signup()
-    {
-        if (!$this->validate()) {
-            return null;
-        }
-        
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
-    }
 }
