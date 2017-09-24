@@ -4,7 +4,7 @@ namespace frontend\tests\unit\forms;
 use common\fixtures\User as UserFixture;
 use frontend\forms\SignupForm;
 
-class SignupFormTest extends \Codeception\Test\Unit
+class SignupTest extends \Codeception\Test\Unit
 {
     /**
      * @var \frontend\tests\UnitTester
@@ -22,7 +22,7 @@ class SignupFormTest extends \Codeception\Test\Unit
         ]);
     }
 
-    public function testCorrectSignup()
+    public function testCorrectRequestSignup()
     {
         $model = new SignupForm([
             'username' => 'some_username',
@@ -33,7 +33,7 @@ class SignupFormTest extends \Codeception\Test\Unit
         expect_that($model->validate());
     }
 
-    public function testNotCorrectSignup()
+    public function testNotCorrectRequestSignup()
     {
         $model = new SignupForm([
             'username' => 'troy.becker',
