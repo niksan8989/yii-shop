@@ -1,7 +1,7 @@
 <?php
 namespace common\tests\unit\forms;
 
-use shop\entities\User;
+use shop\entities\User\User;
 
 class SignupTest extends \Codeception\Test\Unit
 {

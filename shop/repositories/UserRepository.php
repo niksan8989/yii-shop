@@ -1,7 +1,7 @@
 <?php
 namespace shop\repositories;
 
-use shop\entities\User;
+use shop\entities\User\User;
 
 class UserRepository {
     /**
@@ -47,11 +47,11 @@ class UserRepository {
 
     /**
      * @param array $condition
-     * @return \shop\entities\User
+     * @return \shop\entities\User\User
      */
     private function getBy(array $condition): User
     {
-        /** @var \shop\entities\User $user */
+        /** @var \shop\entities\User\User $user */
         if (!$user = User::find()->andWhere($condition)->limit(1)->one()) {
            throw new NotFoundException('User not found.');
         }

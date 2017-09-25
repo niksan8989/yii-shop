@@ -2,7 +2,7 @@
 
 namespace shop\services\auth;
 
-use shop\entities\User;
+use shop\entities\User\User;
 use shop\forms\LoginForm;
 use shop\repositories\UserRepository;
 use Yii;
@@ -18,7 +18,7 @@ class AuthService
 
     public function auth(LoginForm $form): User
     {
-        /** @var \shop\entities\User $user */
+        /** @var \shop\entities\User\User $user */
         $user = $this->users->findByUsernameOrEmail($form->username);
         if (!$user || !$user->isActive() || !$user->validatePassword($form->password)) {
             throw new \DomainException('Undefined user or password.');

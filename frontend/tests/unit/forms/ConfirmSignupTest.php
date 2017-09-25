@@ -1,7 +1,7 @@
 <?php
 namespace frontend\tests\unit\forms;
 
-use shop\entities\User;
+use shop\entities\User\User;
 
 
 class ConfirmSignupTest extends \Codeception\Test\Unit
