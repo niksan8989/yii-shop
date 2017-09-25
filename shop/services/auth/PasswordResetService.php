@@ -40,7 +40,7 @@ class PasswordResetService {
 
         $sent = $this->mailer
             ->compose(
-                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+                ['html' => 'auth/reset/reset-html', 'text' => 'auth/reset/reset-text'],
                 ['user' => $user]
             )
             ->setTo($form->email)
