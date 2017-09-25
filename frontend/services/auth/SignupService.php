@@ -6,14 +6,20 @@ use frontend\forms\SignupForm;
 use common\entities\User;
 use Yii;
 use yii\mail\MailerInterface;
+use common\repositories\UserRepository;
 
 class SignupService
 {
     private $mailer;
+    private $users;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(
+        MailerInterface $mailer,
+        UserRepository $users
+    )
     {
         $this->mailer = $mailer;
+        $this->users = $users;
     }
 
     public function signup(SignupForm $form): User
@@ -24,9 +30,7 @@ class SignupService
             $form->password
         );
 
-        if(!$user->save()){
-            throw new \RuntimeException('Saving error');
-        }
+        $this->save($user);
 
         $sent = $this->mailer
             ->compose(
@@ -50,14 +54,18 @@ class SignupService
             throw new \DomainException('Empty confirm token');
         }
 
-        $user = User::findOne(['email_confirm_token' => $token]);
-
-        if (!$user) {
-            throw new \DomainException('User is not found');
-        }
+        $user = $this->users->getByEmailConfirmToken($token);
 
         $user->confirmSignup();
 
+        $this->save($user);
+    }
+
+    /**
+     * @param $user
+     */
+    public function save(User $user): void
+    {
         if (!$user->save()) {
             throw new \RuntimeException('Saving error');
         }
