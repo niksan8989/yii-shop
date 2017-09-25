@@ -40,6 +40,12 @@ class UserRepository {
         return (bool) User::findByPasswordResetToken($token);
     }
 
+
+    public function findByUsernameOrEmail($value)
+    {
+        return User::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one();
+    }
+
     /**
      * @param array $condition
      * @return User
