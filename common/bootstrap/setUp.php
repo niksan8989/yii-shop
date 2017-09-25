@@ -1,8 +1,8 @@
 <?php
 namespace common\bootstrap;
 
-use frontend\services\auth\PasswordResetService;
-use frontend\services\contact\ContactService;
+use shop\services\auth\PasswordResetService;
+use shop\services\contact\ContactService;
 use Yii;
 use yii\di\Instance;
 use yii\mail\MailerInterface;

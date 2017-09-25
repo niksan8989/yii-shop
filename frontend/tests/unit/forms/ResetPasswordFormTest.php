@@ -3,7 +3,7 @@
 namespace frontend\tests\unit\forms;
 
 use common\fixtures\User as UserFixture;
-use frontend\forms\ResetPasswordForm;
+use shop\forms\auth\ResetPasswordForm;
 
 class ResetPasswordFormTest extends \Codeception\Test\Unit
 {
@@ -30,14 +30,14 @@ class ResetPasswordFormTest extends \Codeception\Test\Unit
         });
 
         $this->tester->expectException('yii\base\InvalidParamException', function() {
-            new ResetPasswordForm('notexistingtoken_1391882543');
+            new \shop\forms\auth\ResetPasswordForm('notexistingtoken_1391882543');
         });
     }
 
     public function testResetCorrectToken()
     {
         $user = $this->tester->grabFixture('user', 0);
-        $form = new \frontend\forms\ResetPasswordForm($user['password_reset_token']);
+        $form = new \shop\forms\auth\ResetPasswordForm($user['password_reset_token']);
         expect_that($form->resetPassword());
     }
 

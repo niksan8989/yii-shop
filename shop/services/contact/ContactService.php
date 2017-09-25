@@ -6,10 +6,10 @@
  * Time: 21:57
  */
 
-namespace frontend\services\contact;
+namespace shop\services\contact;
 
 
-use frontend\forms\ContactForm;
+use shop\forms\ContactForm;
 use Yii;
 use yii\mail\MailerInterface;
 
@@ -29,7 +29,7 @@ class ContactService
     /**
      * Sends an email to the specified email address using the information collected by this model.
      *
-     * @param ContactForm $form
+     * @param \shop\forms\ContactForm $form
      * @return void
      */
     public function send(ContactForm $form): void

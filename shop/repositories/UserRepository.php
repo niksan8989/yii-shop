@@ -1,8 +1,7 @@
 <?php
-namespace common\repositories;
+namespace shop\repositories;
 
-use common\entities\User;
-use frontend\forms\PasswordResetRequestForm;
+use shop\entities\User;
 
 class UserRepository {
     /**
@@ -48,11 +47,11 @@ class UserRepository {
 
     /**
      * @param array $condition
-     * @return User
+     * @return \shop\entities\User
      */
     private function getBy(array $condition): User
     {
-        /** @var \common\entities\User $user */
+        /** @var \shop\entities\User $user */
         if (!$user = User::find()->andWhere($condition)->limit(1)->one()) {
            throw new NotFoundException('User not found.');
         }

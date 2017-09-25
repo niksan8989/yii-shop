@@ -2,7 +2,7 @@
 namespace frontend\tests\unit\forms;
 
 use common\fixtures\User as UserFixture;
-use frontend\forms\SignupForm;
+use shop\forms\auth\SignupForm;
 
 class SignupTest extends \Codeception\Test\Unit
 {
