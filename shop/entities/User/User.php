@@ -1,11 +1,13 @@
 <?php
 namespace shop\entities\User;
 
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use shop\entities\User\Network;
 
 /**
  * User model
@@ -41,6 +43,19 @@ class User extends ActiveRecord implements IdentityInterface
         $user->status = self::STATUS_WAIT;
         $user->generateAuthKey();
         $user->generateEmailConfirmToken();
+        return $user;
+    }
+
+    /*
+     * Signs user up
+     * return User|null
+     */
+    public static function signupByNetwork(string $network, string $identity): self
+    {
+        $user = new static();
+        $user->created_at = time();
+        $user->generateAuthKey();
+        $user->network = [Network::create($network, $identity)];
         return $user;
     }
 
@@ -90,6 +105,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
+            'saveRelations' => [
+                'class'     => SaveRelationsBehavior::className(),
+                'relations' => ['networks']
+            ],
+        ];
+    }
+
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_ALL
         ];
     }
 
@@ -255,5 +281,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function isWait(): bool
     {
         return $this->status == self::STATUS_WAIT;
+    }
+
+    public function getNetworks()
+    {
+        return $this->hasMany(Network::className(), ['user_id' => 'id']);
     }
 }

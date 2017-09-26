@@ -45,6 +45,14 @@ class UserRepository {
         return User::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one();
     }
 
+    public function findByNetworkIdentity($network, $identity)
+    {
+        return User::find()
+            ->joinWith('networks n')
+            ->where(['n.network' => $network, 'n.identity' => $identity])
+            ->one();
+    }
+
     /**
      * @param array $condition
      * @return \shop\entities\User\User
