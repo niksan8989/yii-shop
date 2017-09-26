@@ -55,7 +55,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user = new static();
         $user->created_at = time();
         $user->generateAuthKey();
-        $user->network = [Network::create($network, $identity)];
+        $user->networks = [Network::create($network, $identity)];
         return $user;
     }
 

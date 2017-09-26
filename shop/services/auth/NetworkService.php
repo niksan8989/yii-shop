@@ -16,6 +16,7 @@ class NetworkService
 
     public function auth($network, $identity): User
     {
+        /** @var \shop\entities\User\User $user */
         if ($user = $this->users->findByNetworkIdentity($network, $identity)){
             return $user;
         }
