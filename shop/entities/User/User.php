@@ -23,6 +23,7 @@ use shop\entities\User\Network;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property Network[] $networks
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -57,6 +58,20 @@ class User extends ActiveRecord implements IdentityInterface
         $user->generateAuthKey();
         $user->networks = [Network::create($network, $identity)];
         return $user;
+    }
+
+    public function attachNetwork(string $network, string $identity)
+    {
+        $networks = $this->networks;
+        foreach ($this->networks as $current) {
+            /** @var \shop\entities\User\Network $current */
+            if($current->isFor($network, $identity)){
+                throw new \DomainException('Network is already attached');
+            }
+        }
+
+        $networks[] = Network::create($network, $identity);
+        $this->networks = $networks;
     }
 
     public function requestPasswordReset(): void

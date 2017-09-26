@@ -25,4 +25,15 @@ class NetworkService
         $this->users->save($user);
         return $user;
     }
+
+    public function attach($id, $network, $identity)
+    {
+        if ($this->users->findByNetworkIdentity($network, $identity)) {
+            throw new \DomainException('Network is already signed up');
+        }
+
+        $user = $this->users->get($id);
+        $user->attachNetwork($network, $identity);
+        $this->users->save($user);
+    }
 }

@@ -53,6 +53,12 @@ class UserRepository {
             ->one();
     }
 
+
+    public function get($id): User
+    {
+        return $this->getBy(['id' => $id]);
+    }
+
     /**
      * @param array $condition
      * @return \shop\entities\User\User
