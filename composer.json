@@ -22,7 +22,9 @@
         "webmozart/assert": "^1.2",
         "la-haute-societe/yii2-save-relations-behavior": "^1.2",
         "yiisoft/yii2-authclient": "~2.1.0",
-        "kartik-v/yii2-widgets": "*"
+        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-date-range": "*",
+        "kartik-v/yii2-field-range": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
