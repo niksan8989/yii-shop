@@ -15,8 +15,9 @@ class UserSearch extends Model
     public $id;
     public $username;
     public $email;
-    public $created_at;
     public $status;
+    public $date_from;
+    public $date_to;
 
     /**
      * @inheritdoc
@@ -24,8 +25,9 @@ class UserSearch extends Model
     public function rules()
     {
         return [
-            [['id', 'created_at', 'status'], 'integer'],
+            [['id', 'status'], 'integer'],
             [['username', 'email'], 'safe'],
+            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
 
@@ -57,11 +59,11 @@ class UserSearch extends Model
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
+        $query
+            ->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
