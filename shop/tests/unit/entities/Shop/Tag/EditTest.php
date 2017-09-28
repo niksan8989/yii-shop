@@ -2,6 +2,7 @@
 namespace shop\tests\unit\entities\Shop\Tag;
 
 use Codeception\Test\Unit;
+use shop\entities\Shop\Tag\Tag;
 
 class EditTest extends Unit
 {
@@ -12,7 +13,7 @@ class EditTest extends Unit
             $slug = 'slug'
         );
 
-        Tag::edit(
+        $tag->edit(
             $name = 'New Name',
             $slug = 'New slug'
         );
