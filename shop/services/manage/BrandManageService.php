@@ -37,7 +37,15 @@ class BrandManageService
     {
         $brand = $this->brands->get($id);
 
-        $brand->edit($form->name, $form->slug, $form->meta);
+        $brand->edit(
+            $form->name,
+            $form->slug,
+            new Meta(
+                $form->meta->title,
+                $form->meta->description,
+                $form->meta->keywords
+            )
+        );
 
         $this->brands->save($brand);
     }
