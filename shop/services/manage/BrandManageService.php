@@ -2,7 +2,7 @@
 
 namespace shop\services\msnage;
 
-use backend\forms\manage\Shop\BrandForm;
+use shop\forms\manage\Shop\BrandForm;
 use shop\entities\Meta;
 use shop\entities\Shop\Brand\Brand;
 use shop\repositories\Shop\BrandRepository;

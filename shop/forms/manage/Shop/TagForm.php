@@ -1,5 +1,5 @@
 <?php
-namespace backend\forms\manage\Shop;
+namespace shop\forms\manage\Shop;
 
 use shop\entities\Shop\Tag\Tag;
 use yii\base\Model;

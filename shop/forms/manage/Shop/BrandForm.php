@@ -1,7 +1,7 @@
 <?php
-namespace backend\forms\manage\Shop;
+namespace shop\forms\manage\Shop;
 
-use backend\forms\manage\MetaForm;
+use shop\forms\manage\MetaForm;
 use shop\entities\Meta;
 use shop\entities\Shop\Brand\Brand;
 use shop\forms\CompositeForm;
@@ -34,10 +34,10 @@ class BrandForm extends CompositeForm
         if ($brand) {
             $this->name = $brand->name;
             $this->slug = $brand->slug;
-            $this->meta = new MetaForm($brand->meta);
+            $this->meta = new \shop\forms\manage\MetaForm($brand->meta);
             $this->_brand = $brand;
         } else {
-            $this->meta = new MetaForm();
+            $this->meta = new \shop\forms\manage\MetaForm();
         }
         parent::__construct($config);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace shop\entities\behavior;
+namespace shop\entities\behaviors;
 
 use shop\entities\Meta;
 use shop\entities\Shop\Brand\Brand;

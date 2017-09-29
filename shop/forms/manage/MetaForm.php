@@ -6,7 +6,7 @@
  * Time: 16:27
  */
 
-namespace backend\forms\manage;
+namespace shop\forms\manage;
 
 
 use shop\entities\Meta;

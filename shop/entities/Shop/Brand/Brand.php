@@ -2,7 +2,7 @@
 
 namespace shop\entities\Shop\Brand;
 
-use shop\entities\behavior\MetaBehavior;
+use shop\entities\behaviors\MetaBehavior;
 use yii\db\ActiveRecord;
 use shop\entities\Meta;
 use yii\helpers\Json;
