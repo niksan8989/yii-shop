@@ -5,6 +5,7 @@ use backend\forms\manage\MetaForm;
 use shop\entities\Meta;
 use shop\entities\Shop\Brand\Brand;
 use shop\forms\CompositeForm;
+use shop\validators\SlugValidator;
 
 /**
  * Class BrandForm
@@ -46,7 +47,7 @@ class BrandForm extends CompositeForm
         return [
             [['name'], 'required'],
             [['name', 'slug'], 'string', 'max' => 255],
-            [['slug'], 'pattern' => '#^[a-z0-9_-]*$#s'],
+            ['slug', SlugValidator::class],
             [['name', 'slug'], 'unique', 'targetClass' => Brand::class, 'filter' => $this->_brand ? ['<>', 'id', $this->_brand->id] : null],
         ];
     }
