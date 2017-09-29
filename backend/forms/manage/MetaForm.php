@@ -14,16 +14,16 @@ use yii\base\Model;
 
 class MetaForm extends Model
 {
-    public $metaTitle;
-    public $metaDescription;
-    public $metaKeywords;
+    public $title;
+    public $description;
+    public $keywords;
 
     public function __construct(Meta $meta = null, $config = [])
     {
         if ($meta) {
-            $this->metaTitle = $meta->title;
-            $this->metaDescription = $meta->description;
-            $this->metaKeywords = $meta->keywords;
+            $this->title = $meta->title;
+            $this->description = $meta->description;
+            $this->keywords = $meta->keywords;
         }
         parent::__construct($config);
     }
