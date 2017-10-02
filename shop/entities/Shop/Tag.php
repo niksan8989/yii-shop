@@ -1,6 +1,6 @@
 <?php
 
-namespace shop\entities\Shop\Tag;
+namespace shop\entities\Shop;
 
 use yii\db\ActiveRecord;
 

@@ -1,7 +1,7 @@
 <?php
 namespace shop\forms\manage\Shop;
 
-use shop\entities\Shop\Tag\Tag;
+use shop\entities\Shop\Tag;
 use yii\base\Model;
 
 class TagForm extends Model
