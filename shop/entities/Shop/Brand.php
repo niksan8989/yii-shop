@@ -1,6 +1,6 @@
 <?php
 
-namespace shop\entities\Shop\Brand;
+namespace shop\entities\Shop;
 
 use shop\entities\behaviors\MetaBehavior;
 use yii\db\ActiveRecord;

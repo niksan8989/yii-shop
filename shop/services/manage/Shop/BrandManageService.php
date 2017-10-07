@@ -1,10 +1,10 @@
 <?php
 
-namespace shop\services\msnage;
+namespace shop\services\manage\Shop;
 
 use shop\forms\manage\Shop\BrandForm;
 use shop\entities\Meta;
-use shop\entities\Shop\Brand\Brand;
+use shop\entities\Shop\Brand;
 use shop\repositories\Shop\BrandRepository;
 
 class BrandManageService

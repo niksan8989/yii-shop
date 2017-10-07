@@ -3,7 +3,7 @@ namespace shop\forms\manage\Shop;
 
 use shop\forms\manage\MetaForm;
 use shop\entities\Meta;
-use shop\entities\Shop\Brand\Brand;
+use shop\entities\Shop\Brand;
 use shop\forms\CompositeForm;
 use shop\validators\SlugValidator;
 

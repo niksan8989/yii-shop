@@ -3,7 +3,7 @@
 namespace shop\entities\behaviors;
 
 use shop\entities\Meta;
-use shop\entities\Shop\Brand\Brand;
+use shop\entities\Shop\Brand;
 use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\ActiveRecord;
