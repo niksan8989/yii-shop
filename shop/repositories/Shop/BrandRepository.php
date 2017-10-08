@@ -1,6 +1,7 @@
 <?php
 namespace shop\repositories\Shop;
 use shop\entities\Shop\Brand;
+use shop\entities\Shop\Product\Product;
 use shop\repositories\NotFoundException;
 class BrandRepository
 {

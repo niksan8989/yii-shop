@@ -34,9 +34,9 @@ class MetaBehavior extends Behavior
     {
         $brand = $event->sender;
         $brand->setAttribute($this->json_attribute, Json::encode([
-            'title' => $brand->title,
-            'description' => $brand->description,
-            'keywords' => $brand->keywords,
+            'title' => $brand->{$this->attribute}->title,
+            'description' => $brand->{$this->attribute}->description,
+            'keywords' => $brand->{$this->attribute}->keywords,
         ]));
     }
 }
