@@ -81,6 +81,7 @@ class ProductManageService
     {
         $product = $this->products->get($id);
         $brand = $this->brands->get($form->brandId);
+        $category = $this->categories->get($form->categories->main);
         $product->edit(
             $brand->id,
             $form->code,
@@ -92,6 +93,12 @@ class ProductManageService
                 $form->meta->keywords
             )
         );
+        $product->changeMainCategory($category->id);
+        $product->revokeCategories();
+        foreach ($form->categories->others as $otherId) {
+            $category = $this->categories->get($otherId);
+            $product->assignCategory($category->id);
+        }
         foreach ($form->values as $value) {
             $product->setValue($value->id, $value->value);
         }
@@ -110,18 +117,6 @@ class ProductManageService
             }
             $this->products->save($product);
         });
-    }
-    public function changeCategories($id, CategoriesForm $form): void
-    {
-        $product = $this->products->get($id);
-        $category = $this->categories->get($form->main);
-        $product->changeMainCategory($category->id);
-        $product->revokeCategories();
-        foreach ($form->others as $otherId) {
-            $category = $this->categories->get($otherId);
-            $product->assignCategory($category->id);
-        }
-        $this->products->save($product);
     }
     public function addPhotos($id, PhotosForm $form): void
     {
