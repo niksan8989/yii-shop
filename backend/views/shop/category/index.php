@@ -21,12 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    'id',
                     [
                         'attribute' => 'name',
                         'value' => function (Category $model) {
                             $indent = ($model->depth > 1 ? str_repeat('&nbsp;&nbsp;', $model->depth - 1) . ' ' : '');
                             return $indent . Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+                        },
+                        'format' => 'raw',
+                    ],
+                    [
+                        'value' => function(Category $model){
+                            return
+                                Html::a('<span class="glyphicon glyphicon-arrow-up"></span>', ['move-up', 'id' => $model->id]) .
+                                Html::a('<span class="glyphicon glyphicon-arrow-down"></span>', ['move-down', 'id' => $model->id]);
                         },
                         'format' => 'raw',
                     ],
