@@ -7,6 +7,7 @@ use shop\entities\Shop\Brand;
 use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 class MetaBehavior extends Behavior
@@ -27,7 +28,11 @@ class MetaBehavior extends Behavior
     {
         $brand = $event->sender;
         $meta = Json::decode($brand->getAttribute($this->json_attribute));
-        $brand->{$this->attribute} = new Meta($meta['title'], $meta['description'], $meta['keywords']);
+        $brand->{$this->attribute} = new Meta(
+            ArrayHelper::getValue($meta, 'title'),
+            ArrayHelper::getValue($meta, 'description'),
+            ArrayHelper::getValue($meta, 'keywords')
+        );
     }
 
     public function onBeforeSave(Event $event): void
