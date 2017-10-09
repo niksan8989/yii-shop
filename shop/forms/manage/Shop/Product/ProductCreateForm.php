@@ -36,6 +36,7 @@ class ProductCreateForm extends CompositeForm
             [['code', 'name'], 'string', 'max' => 255],
             [['brandId'], 'integer'],
             [['code'], 'unique', 'targetClass' => Product::class],
+            ['description', 'string'],
         ];
     }
     protected function internalForms(): array
