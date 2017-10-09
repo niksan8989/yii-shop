@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 Html::a('<span class="glyphicon glyphicon-arrow-down"></span>', ['move-down', 'id' => $model->id]);
                         },
                         'format' => 'raw',
+                        'contentOptions' => ['style' => 'text-align: center']
                     ],
                     'slug',
                     'title',
