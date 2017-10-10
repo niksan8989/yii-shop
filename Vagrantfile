@@ -3,7 +3,8 @@ require 'fileutils'
 
 domains = {
   frontend: 'frontend.yii-shop.dev',
-  backend:  'backend.yii-shop.dev'
+  backend:  'backend.yii-shop.dev',
+  static:   'static.yii-shop.dev'
 }
 
 config = {
@@ -68,5 +69,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision 'shell', path: './vagrant/provision/always-as-root.sh', run: 'always'
 
   # post-install message (vagrant console)
-  config.vm.post_up_message = "Frontend URL: http://#{domains[:frontend]}\nBackend URL: http://#{domains[:backend]}"
+  config.vm.post_up_message = "Frontend URL: http://#{domains[:frontend]}\nBackend URL: http://#{domains[:backend]}\nStatic URL: http://#{domains[:static]}"
 end
