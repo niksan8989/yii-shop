@@ -3,6 +3,7 @@ namespace shop\forms\manage\Shop\Product;
 use shop\entities\Shop\Product\Product;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
+use shop\entities\Shop\Category;
 class CategoriesForm extends Model
 {
     public $main;
@@ -23,5 +24,12 @@ class CategoriesForm extends Model
             ['others', 'each', 'rule' => ['integer']],
             ['others', 'default', 'value' => []],
         ];
+    }
+
+    public function categoriesList(): array
+    {
+        return ArrayHelper::map(Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft')->asArray()->all(), 'id', function (array $category) {
+            return ($category['depth'] > 1 ? str_repeat('-- ', $category['depth'] - 1) . ' ' : '') . $category['name'];
+        });
     }
 }

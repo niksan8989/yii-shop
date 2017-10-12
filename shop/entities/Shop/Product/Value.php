@@ -1,5 +1,7 @@
 <?php
 namespace shop\entities\Shop\Product;
+use shop\entities\Shop\Characteristic;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 /**
  * @property integer $characteristic_id
@@ -31,5 +33,10 @@ class Value extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%shop_values}}';
+    }
+
+    public function getCharacteristic(): ActiveQuery
+    {
+        return $this->hasOne(Characteristic::class, ['id' => 'characteristic_id']);
     }
 }

@@ -1,0 +1,1 @@
+2017/10/12 22:57:57 [error] 13932#0: *1 open() "/app/static/favicon.ico" failed (2: No such file or directory), client: 192.168.83.1, server: static.yii-shop.dev, request: "GET /favicon.ico HTTP/1.1", host: "static.yii-shop.dev", referrer: "http://static.yii-shop.dev/origin/products/1/1.jpg"
