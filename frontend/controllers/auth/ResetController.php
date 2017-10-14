@@ -18,6 +18,7 @@ use yii\web\Controller;
 
 class ResetController extends Controller
 {
+    public $layout = 'cabinet';
     private $passwordResetService;
 
     public function __construct(
