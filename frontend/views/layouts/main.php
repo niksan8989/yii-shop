@@ -90,7 +90,7 @@ OwlCarouselAsset::register($this);
                 <div class="col-sm-4">
                     <div id="logo">
                         <a href="/index.php?route=common/home"><img
-                                    src="/image/catalog/logo.png" title="Your Store" alt="Your Store"
+                                    src="<?= Yii::getAlias('@web/image/logo.png') ?>" title="Your Store" alt="Your Store"
                                     class="img-responsive"/></a>
                     </div>
                 </div>
