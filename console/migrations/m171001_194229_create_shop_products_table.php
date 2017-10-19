@@ -38,6 +38,6 @@ class m171001_194229_create_shop_products_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('{{%shop_products}}');
+        //$this->dropTable('{{%shop_products}}');
     }
 }
