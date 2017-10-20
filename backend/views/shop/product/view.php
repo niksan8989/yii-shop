@@ -134,6 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'controller' => 'shop/modification',
                         'template' => '{update} {delete}',
                     ],
+
                 ],
             ]); ?>
         </div>

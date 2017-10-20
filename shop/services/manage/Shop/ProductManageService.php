@@ -126,6 +126,18 @@ class ProductManageService
         $product->setPrice($form->new, $form->old);
         $this->products->save($product);
     }
+    public function activate($id): void
+    {
+        $product = $this->products->get($id);
+        $product->activate();
+        $this->products->save($product);
+    }
+    public function draft($id): void
+    {
+        $product = $this->products->get($id);
+        $product->draft();
+        $this->products->save($product);
+    }
     public function addPhotos($id, PhotosForm $form): void
     {
         $product = $this->products->get($id);
